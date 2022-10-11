@@ -25,7 +25,7 @@ public:
     int size() const;           // number of elements in array
     int numberOfMembers() const;
     string getNameOfMember(int el) const;
-    void loggedInMem(int acctNum);     //assign logged in member
+    void saveLoggedInMem(int acctNum);     //assign logged in member
     int getLoggedInMem();           //retrieve accnt num of logged in member
     string to_string() const;   // returns string representation of
     // the MemberList class

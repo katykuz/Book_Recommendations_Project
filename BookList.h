@@ -25,8 +25,12 @@ public:
     BookList& operator=(const BookList &);    // Overloaded = operator
     void add(string);             // add element to array
     int get(int) const;        // find element in array; return index
+    int getISBN(int el);
     // where found or -1 if not found
     int find(string, string, string); //find repeating books in list
+    string getBookTitle(int); //returns title of book based on isbn
+    string getBookAuthor(int);  //returns author of book based on isbn
+    string getBookYear(int);    //return year of book based on isbn
     bool empty() const;         // determines if list is empty or not
     int size() const;           // number of elements in array
     int numberOfBooks() const;  //number of books added

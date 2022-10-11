@@ -79,20 +79,24 @@ RatingsList::RatingsList(const RatingsList &obj) {
 
 //}
 
-void RatingsList::add(int account, int bookNum, int rating) {
+void RatingsList::add(int account, int bookISBN, int rating) {
     //check if the array is full
-    if (account >= rowMemMax || bookNum >= colBookMax)
+    if (account >= rowMemMax || bookISBN >= colBookMax)
         resize();                // resize doubles the size of the array
 
     //assign rating into array
-    ratingsArr[account][bookNum] = rating;
+    ratingsArr[account][bookISBN] = rating;
+
+}
+
+int RatingsList::getRating(int account, int isbn) {
+
+    // return rating of book
+    return ratingsArr[account][isbn];
 
 }
 
 int RatingsList::returnRatings(int account) const {
-
-    //declare stringstream
-    stringstream ss;
 
     for (int i = 0; i < colBookMax; i++) {
             if (!ratingsArr[account][i] == 0)
@@ -100,7 +104,18 @@ int RatingsList::returnRatings(int account) const {
                 return ratingsArr[account][i];
     }
     // if not found, return -1
-    //return -1;
+    return -1;
+}
+
+int RatingsList::getISBN(int account, int rating) {
+
+    for (int i = 0; i < colBookMax; i++) {
+        if (ratingsArr[account][i] == rating)
+            // return string with ratings
+            return i;
+    }
+    // if not found, return -1
+    return -1;
 }
 
 bool RatingsList::empty() const {

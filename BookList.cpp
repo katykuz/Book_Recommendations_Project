@@ -73,7 +73,9 @@ void BookList::add(string el) {
     string str;
 
     //assign isbn value from static int counter of books while incrementing it
-    list[numElements].isbn = ++bookCount;
+    list[numElements].isbn = bookCount;
+
+    bookCount++;
 
     //push el string into istringstream to be able to parse it
     istringstream ss(el);
@@ -108,6 +110,19 @@ int BookList::get(int el) const {
     return -1;
 }
 
+int BookList::getISBN(int el){
+
+    //to see if certain element is present in array, loop through array to find
+    // element
+    for (int i = 0; i < numElements; i++) {
+        if (list[i].isbn == (el))
+            // return i
+            return list[i].isbn;
+    }
+    // if not found, return no title
+    return -1;
+}
+
 int BookList::find(string authorName, string bookName, string yearPublished) {
 
     bool found;
@@ -123,6 +138,54 @@ int BookList::find(string authorName, string bookName, string yearPublished) {
 
     }
     return -1;
+}
+
+string BookList::getBookTitle(int el){
+
+    //modify element to account for indexing difference
+    int num = el;
+
+    //to see if certain element is present in array, loop through array to find
+    // element
+    for (int i = 0; i < numElements; i++) {
+        if (list[i].isbn == (num))
+            // return i
+            return list[i].title;
+    }
+    // if not found, return no title
+    return "No title";
+}
+
+string BookList::getBookAuthor(int el){
+
+    //modify element to account for indexing difference
+    int num = el;
+
+    //to see if certain element is present in array, loop through array to find
+    // element
+    for (int i = 0; i < numElements; i++) {
+        if (list[i].isbn == (num))
+            // return i
+            return list[i].author;
+    }
+    // if not found, return no title
+    return "No author";
+}
+
+string BookList::getBookYear(int el){
+
+    //modify element to account for indexing difference
+    int num = el;
+
+    //to see if certain element is present in array, loop through array to find
+    // element
+    for (int i = 0; i < numElements; i++) {
+        if (list[i].isbn == (num))
+            // return i
+            return list[i].year;
+    }
+    // if not found, return no title
+    return "No year";
 }
 
 bool BookList::empty() const {
@@ -142,7 +205,7 @@ int BookList::size() const {
 int BookList::numberOfBooks() const{
 
     //returns number of books added
-    return bookCount;
+    return bookCount-1;
 }
 
 

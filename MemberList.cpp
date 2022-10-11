@@ -14,7 +14,7 @@ MemberList::MemberList() {
     list = new Member[CAP];
     capacity = CAP;
     numMembers = 0;
-    memberCount = 0;
+    memberCount = 1;
 }
 
 //destructor
@@ -69,7 +69,9 @@ void MemberList::add(string name) {
     //string str;
 
     //
-    list[numMembers].account = ++memberCount;
+    list[numMembers].account = memberCount;
+
+    memberCount++;
 
     //push el string into istringstream to be able to parse it
     //istringstream ss(el);
@@ -90,7 +92,7 @@ string MemberList::addManually(string name) {
     //string str;
 
     //
-    list[numMembers].account = ++memberCount;
+    list[numMembers].account = memberCount;
 
     //push el string into istringstream to be able to parse it
     //istringstream ss(el);
@@ -105,12 +107,14 @@ string MemberList::addManually(string name) {
     string memAddConfirmation = name + "'s account number is: " +
             ::to_string(memberCount);
 
+    memberCount++;
+
     return memAddConfirmation;
 }
 
 bool MemberList::find(int el) const {
 
-    //to see if certain element is present in array, loop through array to find
+    //to see if member account is present in array, loop through array to find
     // element
     for (int i = 0; i < numMembers; i++) {
         if (list[i].account == (el))
@@ -124,15 +128,16 @@ bool MemberList::find(int el) const {
 string MemberList::getNameOfMember(int el) const {
 
     string noName = "No one";
+    int num = el - 1;
 
     if (el == -1)
         return noName;
     else
-        return list[el].name;
+        return list[num].name;
 
 }
 
-void MemberList::loggedInMem(int acctNum) {
+void MemberList::saveLoggedInMem(int acctNum) {
 
     loggedInAccntNum = acctNum;
 
@@ -147,7 +152,7 @@ int MemberList::getLoggedInMem(){
 int MemberList::numberOfMembers() const{
 
     //returns number of books added
-    return memberCount;
+    return memberCount - 1;
 }
 
 bool MemberList::empty() const {

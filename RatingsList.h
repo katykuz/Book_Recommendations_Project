@@ -22,7 +22,9 @@ public:
     RatingsList& operator=(const RatingsList &);    // Overloaded = operator
     void add(int, int, int);             // add element to array
     int returnRatings(int) const;        //
-    // where found or -1 if not found
+    int getRating(int, int);    //get book's rating from specific account
+    int getISBN(int account, int rating);   //get isbn's with specific ratings
+                                            // of specific member
     bool empty() const;         // determines if list is empty or not
     int size() const;           // number of elements in array
     string to_string() const;   // returns string representation of

@@ -1,11 +1,10 @@
 // Ekaterina Kuznetsova
 // BookList.h
-// October 4, 2022
+// October 12, 2022
 // Purpose: This class creates a dynamic array with each element consisting
 // of a Book struct, which is defined in the private section of this class.
-// The class also provides functions needed to add book data to each element,
-// functionality to copy the array, to equate the array, to find individual
-// elements, to see if the array is empty, and to viewRatings the size of array.
+// The class also provides functions needed to modify the array and to gather
+// information from the array.
 
 #ifndef LAB2_BOOKLIST_H
 #define LAB2_BOOKLIST_H

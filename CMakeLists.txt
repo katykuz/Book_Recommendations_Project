@@ -3,4 +3,4 @@ project(Project1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Project1 main.cpp BookList.cpp BookList.h MemberList.cpp MemberList.h RatingsList.cpp RatingsList.h)
+add_executable(Project1 Project1.cpp BookList.cpp BookList.h MemberList.cpp MemberList.h RatingsList.cpp RatingsList.h)

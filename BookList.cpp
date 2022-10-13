@@ -1,5 +1,6 @@
 // Ekaterina Kuznetsova
 // BookList.cpp
+// October 12, 2022
 // Purpose: Implementation for className described in BookList.h
 
 #include <iostream>
@@ -75,6 +76,7 @@ void BookList::add(string el) {
     //assign isbn value from static int counter of books while incrementing it
     list[numElements].isbn = bookCount;
 
+    //increment bookcount
     bookCount++;
 
     //push el string into istringstream to be able to parse it
@@ -125,18 +127,20 @@ int BookList::getISBN(int el){
 
 int BookList::find(string authorName, string bookName, string yearPublished) {
 
-    bool found;
+    //declare integer to hold element value
     int i;
 
     for (i = 0; i < numElements; i++) {
         if ((list[i].author.compare(authorName) == 0) &&
             (list[i].title.compare(bookName) == 0) && (list[i].year.compare
                 (yearPublished)) == 0) {
-            //
+
+            //add one to return an ISBN
             return i + 1;
         }
 
     }
+    //if not found
     return -1;
 }
 

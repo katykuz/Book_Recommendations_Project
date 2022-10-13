@@ -1,6 +1,7 @@
-//
-// Created by evken on 10/5/2022.
-//
+// Ekaterina Kuznetsova
+// MemberList.h
+// October 12, 2022
+// Purpose: Implementation for className described in MemberList.h
 
 #include <iostream>
 #include "MemberList.h"
@@ -61,100 +62,105 @@ MemberList& MemberList::operator=(const MemberList &obj) {
     return *this;   //returns the contents of the pointer - which is an IntList
 }
 
+//method for adding members to array
 void MemberList::add(string name) {
-    if (numMembers >= capacity) //check if the array is full
-        resize();                // resize doubles the size of the array
+    if (numMembers >= capacity)     //check if the array is full
+        resize();                   // resize doubles the size of the array
 
-    //declare string  to pass sections of the element string into struct
-    //string str;
-
-    //
+    //assign the new member an account number based on how many members in array
     list[numMembers].account = memberCount;
 
+    //increment the count of members
     memberCount++;
 
-    //push el string into istringstream to be able to parse it
-    //istringstream ss(el);
-
-    //assign first section of string to author
-    //getline(ss, str, ',');
+    //assign the name attribute based on method input
     list[numMembers].name = name;
 
     //increment the number of elements for array indexing
     numMembers++;
 }
 
+//method for adding members to array by taking in name of member from user
 string MemberList::addManually(string name) {
     if (numMembers >= capacity) //check if the array is full
         resize();                // resize doubles the size of the array
 
-    //declare string  to pass sections of the element string into struct
-    //string str;
-
-    //
+    //assign the new member an account number based on how many members in array
     list[numMembers].account = memberCount;
 
-    //push el string into istringstream to be able to parse it
-    //istringstream ss(el);
-
-    //assign first section of string to author
-    //getline(ss, str, ',');
+    //increment the count of members
     list[numMembers].name = name;
 
     //increment the number of elements for array indexing
     numMembers++;
 
+    //create string that states new member's account number
     string memAddConfirmation = name + "'s account number is: " +
             ::to_string(memberCount);
 
+    //increment count of members
     memberCount++;
 
+    //return string
     return memAddConfirmation;
 }
 
-bool MemberList::find(int el) const {
+//Method takes in the account number of the member and returns true if it is
+//in the array
+bool MemberList::find(int account) const {
 
     //to see if member account is present in array, loop through array to find
     // element
     for (int i = 0; i < numMembers; i++) {
-        if (list[i].account == (el))
-            // return true
+        if (list[i].account == (account))
+            //return true
             return true;
     }
-    // if not found, return false
+    //if not found, return false
     return false;
 }
 
-string MemberList::getNameOfMember(int el) const {
+//Method returns the name of the member when provided the account number
+string MemberList::getNameOfMember(int account) const {
 
+    //back up variable in case this function is reached with invalid input
     string noName = "No one";
-    int num = el - 1;
 
-    if (el == -1)
+    //adjust for difference between account number and index
+    int el = account - 1;
+
+    //if the account isn't in the list, return no name
+    if (!find(account))
         return noName;
     else
-        return list[num].name;
+        //otherwise return the name in the element
+        return list[el].name;
+}
+
+//save the account number of the logged in member
+void MemberList::saveLoggedInMem(int account) {
+
+    //assign the variable to the account number
+    loggedInAccntNum = account;
 
 }
 
-void MemberList::saveLoggedInMem(int acctNum) {
-
-    loggedInAccntNum = acctNum;
-
-}
-
+//get the account number of the logged in member
 int MemberList::getLoggedInMem(){
 
+    //return the int variable representing the account number
     return loggedInAccntNum;
 
 }
 
+//returns the number of members that have been added to the list
 int MemberList::numberOfMembers() const{
 
     //returns number of books added
     return memberCount - 1;
 }
 
+//returns true if there are no members
 bool MemberList::empty() const {
 
     //returns true if number of elements is zero and array is empty
@@ -162,6 +168,7 @@ bool MemberList::empty() const {
 
 }
 
+//returns the number of elements
 int MemberList::size() const {
 
     //returns number of elements in array
@@ -190,6 +197,7 @@ string MemberList::to_string() const {
 
 }
 
+//doubles the capacity of the member array
 void MemberList::resize() {
     // update capacity
     capacity *= 2;              //doubles the value of capacity

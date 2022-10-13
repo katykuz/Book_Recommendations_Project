@@ -1,6 +1,10 @@
-//
-// Created by evken on 10/5/2022.
-//
+// Ekaterina Kuznetsova
+// MemberList.h
+// October 12, 2022
+// Purpose: This class creates a dynamic array with each element consisting
+// of a Member struct, which is defined in the private section of this class.
+// The class also provides functions needed to modify the array and to gather
+// information from the array.
 
 #ifndef PROJECT1_MEMBERLIST_H
 #define PROJECT1_MEMBERLIST_H
@@ -14,21 +18,21 @@ class MemberList {
 
 public:
 
-    MemberList();             // Constructor
-    ~MemberList();                // Destructor
-    MemberList(const MemberList &);               // Copy constructor
-    MemberList &operator=(const MemberList &);    // Overloaded = operator
-    void add(string);             // add element to array
-    string addManually(string name); //adding member manually
-    bool find(int) const;        // find element in array; return true if found
-    bool empty() const;         // determines if list is empty or not
-    int size() const;           // number of elements in array
-    int numberOfMembers() const;
-    string getNameOfMember(int el) const;
-    void saveLoggedInMem(int acctNum);     //assign logged in member
-    int getLoggedInMem();           //retrieve accnt num of logged in member
-    string to_string() const;   // returns string representation of
-    // the MemberList class
+    MemberList();                                   // Constructor
+    ~MemberList();                                  // Destructor
+    MemberList(const MemberList &);                 // Copy constructor
+    MemberList &operator=(const MemberList &);      // Overloaded = operator
+    void add(string);                               //add element to array
+    string addManually(string name);                //adding member manually
+    bool find(int) const;        //find element in array; return true if found
+    bool empty() const;          //determines if list is empty or not
+    int size() const;            //returns number of elements in array
+    int numberOfMembers() const;            //returns number of members
+    string getNameOfMember(int el) const;   //returns name of member
+    void saveLoggedInMem(int acctNum);      //tracks/assigns logged in member
+    int getLoggedInMem();                   //return accnt # of logged in mem
+    string to_string() const;               // returns string representation of
+                                            // the MemberList class
 
 private:
 
@@ -40,11 +44,11 @@ private:
     };
 
     Member *list;             // Pointer to the array
-    int capacity;            // capacity of array
-    int numMembers;         // Number of elements for array indexing
-    int memberCount;        //number of members added
-    int loggedInAccntNum;   //currently logged in member account number
-    void resize();          // resize array (when full)
+    int capacity;             // capacity of array
+    int numMembers;           // Number of elements for array indexing
+    int memberCount;          //number of members added
+    int loggedInAccntNum;     //currently logged in member account number
+    void resize();            // resize array (when full)
 
 };
 
